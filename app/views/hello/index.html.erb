@@ -1,3 +1,5 @@
 <% cache 'word-of-the-hour', expires_in: 2.seconds do %>
   <%= %w(happy developer watch drifting ruby screencasts about rails).sample %>
 <% end %>
+
+<%= $redis.get('foo') %>
