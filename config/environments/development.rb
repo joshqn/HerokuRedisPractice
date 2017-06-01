@@ -12,13 +12,18 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+
   # Enable/disable caching. By default caching is disabled.
-  if ENV['REDIS_URL']
-    config.action_controller.perform_caching = true
-    config.cache_store = :redis_store
-  else
-    config.action_controller.perform_caching = false
-  end
+
+  config.action_controller.perform_caching = true
+
+  config.cache_store = :redis_store, {
+    host: '127.0.0.1',
+    port: 6379,
+    db: 0,
+    namespace: '056redis'
+  }
+
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
